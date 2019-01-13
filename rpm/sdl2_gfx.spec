@@ -1,6 +1,6 @@
 Summary: Simple DirectMedia Layer - Graphics Primitives
 Name: SDL2_gfx
-Version: 1.0.0
+Version: 1.0.4
 Release: 1
 Source: %{name}-%{version}.tar.gz
 URL: http://sourceforge.net/projects/sdl2gfx/
@@ -22,7 +22,7 @@ Library containing 20+ graphics primitives (line, box, circle,
 polygon, etc.) for SDL2.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}/%{name}
 
 %build
 # Fix a build error in OBS (see http://stackoverflow.com/q/10085554)
@@ -46,13 +46,14 @@ make
 /sbin/ldconfig
 
 %files
-%defattr(-,root,root)
+%defattr(644,root,root)
 %doc AUTHORS INSTALL NEWS README
 %{_libdir}/lib*.so.*
 
 %files devel
-%defattr(-,root,root)
+%defattr(644,root,root)
 %doc AUTHORS INSTALL NEWS README
 %{_libdir}/lib*.so
+%{_libdir}/pkgconfig/*.pc
 %{_includedir}/*/*.h
 
