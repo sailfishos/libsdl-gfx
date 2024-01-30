@@ -27,13 +27,16 @@ polygon, etc.) for SDL2.
 %build
 # Fix a build error in OBS (see http://stackoverflow.com/q/10085554)
 autoreconf -fvi
-%configure
+%configure \
+%ifnarch %{ix86} %{x86_64} x86_64
+          --disable-mmx \
+%endif
+          --disable-static
+# On non-X86 architectures, disable MMX
 %make_build
 
 %install
 %make_install
-
-find %{buildroot} -name \*.a -delete
 
 %post
 /sbin/ldconfig
