@@ -5,7 +5,6 @@ Release: 1
 Source: %{name}-%{version}.tar.gz
 URL: http://sourceforge.net/projects/sdl2gfx/
 License: zlib
-Group: Applications/Multimedia
 BuildRequires: pkgconfig(sdl2)
 
 %description
@@ -14,7 +13,6 @@ polygon, etc.) for SDL2.
 
 %package devel
 Summary: Simple DirectMedia Layer - Graphics Primitives (Development)
-Group: Development/Libraries
 Requires: %{name} = %{version}
 
 %description devel
@@ -22,7 +20,7 @@ Library containing 20+ graphics primitives (line, box, circle,
 polygon, etc.) for SDL2.
 
 %prep
-%setup -q -n %{name}-%{version}/%{name}
+%autosetup -n %{name}-%{version}/%{name}
 
 %build
 # Fix a build error in OBS (see http://stackoverflow.com/q/10085554)
@@ -38,14 +36,13 @@ autoreconf -fvi
 %install
 %make_install
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root)
+%license COPYING
 %doc AUTHORS INSTALL NEWS README
 %{_libdir}/lib*.so.*
 
