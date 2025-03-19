@@ -44,7 +44,7 @@ autoreconf -fvi
 %defattr(644,root,root)
 %license COPYING
 %doc AUTHORS INSTALL NEWS README
-%{_libdir}/lib*.so.*
+%attr(755, root, root) %{_libdir}/lib*.so.*
 
 %files devel
 %defattr(644,root,root)
@@ -52,4 +52,3 @@ autoreconf -fvi
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/*/*.h
-
